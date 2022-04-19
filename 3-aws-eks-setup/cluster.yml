@@ -4,17 +4,17 @@ kind: ClusterConfig
 metadata:
   name: airflow
   region: us-east-1
-  version: "1.22"
+  version: "1.22" # cluster version
 
 managedNodeGroups:
   - name: workers
-    instanceType: t3.small
+    instanceType: t3.medium
     privateNetworking: true
     minSize: 1
     maxSize: 3
     desiredCapacity: 2
     volumeSize: 20
-    ssh:
+    ssh: #Allow SSH Connectivity Ability to EC2 Instances
       allow: true
       publicKeyName: airflow-workstation
     labels: { role: worker }
