@@ -55,7 +55,8 @@ kubectl create namespace flux
 helm repo add fluxcd https://charts.fluxcd.io
 
 helm upgrade -i flux fluxcd/flux \
---set git.url=git@github.com@damorita/airflow-kubernetes \
+--set git.url=git@github.com:damorita/airflow-kubernetes \
+--set git.branch=main \
 --namespace flux
 
 helm upgrade -i helm-operator fluxcd/helm-operator --wait \
@@ -67,6 +68,7 @@ helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 
 # Validate Install
 kubectl get pods -n flux
+kubectl logs -f flux-7b5cf5c96b-nrbwh -n flux
 
 # Install fluxctl
 brew install fluxctl
@@ -75,3 +77,6 @@ fluxctl version
 fluxctl identity --k8s-fwd-ns flux
 
 ```
+
+
+## 3-aws-eks-setup
