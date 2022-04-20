@@ -15,17 +15,17 @@ spec:
     fernetKey: "zTxhk7FuGqQVPZVoukLn5bGWOrgHzhQnBnaqAItcZGI="
     env:
       - name: "AIRFLOW__KUBERNETES__DAGS_IN_IMAGE"
-        value: "True"
+        value: "false"
       - name: "AIRFLOW__KUBERNETES__NAMESPACE"
         value: "dev"
       - name: "AIRFLOW__KUBERNETES__WORKER_CONTAINER_REPOSITORY"
         value: "apache/airflow"
       - name: "AIRFLOW__KUBERNETES__WORKER_CONTAINER_TAG"
-        value: "2.2.5-python3.7
+        value: "2.2.5-python3.7"
       - name: "AIRFLOW__KUBERNETES__RUN_AS_USER"
         value: "50000"
       - name: "AIRFLOW__CORE__LOAD_EXAMPLES"
-        value: "True"
+        value: "false"
     executor: "KubernetesExecutor"
     # Set Up Dags Configurations
     dags:
