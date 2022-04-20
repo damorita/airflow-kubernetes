@@ -21,9 +21,26 @@ spec:
       - name: "AIRFLOW__KUBERNETES__WORKER_CONTAINER_REPOSITORY"
         value: "apache/airflow"
       - name: "AIRFLOW__KUBERNETES__WORKER_CONTAINER_TAG"
-        value: "1.10.15-python3.7"
+        value: "2.2.5-python3.7
       - name: "AIRFLOW__KUBERNETES__RUN_AS_USER"
         value: "50000"
       - name: "AIRFLOW__CORE__LOAD_EXAMPLES"
         value: "True"
     executor: "KubernetesExecutor"
+    # Set Up Dags Configurations
+    dags:
+      persistence:
+        enabled: true
+        size: 512Mi
+        storageClassName: aws-efs
+        accessMode: ReadWriteMany
+        existingClaim: efs-storage-claim
+      # Pull dags with Git Sync
+      # gitSync:
+      #   enabled: True
+      #   repo: git@github.com:damorita/my-private-tag
+      #   branch: main
+      #   maxFailures: 0
+      #   subPath: ""
+      #   wait: 60
+      #   ssKeySecret: airflow-git-private-dags #secret name in K8s
